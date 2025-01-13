@@ -20,10 +20,9 @@ const categories = [
   { id: 5, name: "Entertainment" },
 ];
 const tabs = [
-  { name: "My Account", href: "#", current: false },
-  { name: "Company", href: "#", current: false },
-  { name: "Team Members", href: "#", current: true },
-  { name: "Billing", href: "#", current: false },
+  { name: "Dashboard", href: "#", current: false },
+  { name: "Expenses", href: "#", current: false },
+  { name: "Report", href: "#", current: true },
 ];
 const ExpenseTracker = () => {
   // const [activeTab, setActiveTab] = useState("dashboard");

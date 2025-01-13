@@ -1,8 +1,37 @@
 import Card, { CardHeader, CardTitle, CardContent } from "../components/ui/BaseCard";
 import BaseTable, { TableHeader, TableRow, TableHead, TableBody, TableCell } from "../components/ui/BaseTable";
+import { Doughnut } from 'react-chartjs-2';
+import { useState, useEffect } from "react";
+
+const categories = [
+    { id: 1, name: "Food" },
+    { id: 2, name: "Transport" },
+    { id: 3, name: "Shopping" },
+    { id: 4, name: "Bills" },
+    { id: 5, name: "Entertainment" },
+];
 
 const Dashboard = () => {
-  const [expenses, setExpenses] = useState([]);
+    const [expenses, setExpenses] = useState([]);
+
+    const getBudgetStatus = () => {
+        const budgets = {
+            'Food': 500, 'Transport': 300, 'Shopping': 400,
+            'Bills': 800, 'Entertainment': 200
+        };
+        const categoryTotals = {};
+        expenses.forEach(expense => {
+            const category = expense.data.category;
+            categoryTotals[category] = (categoryTotals[category] || 0) + parseFloat(expense.data.amount);
+        });
+
+        return Object.entries(budgets).map(([category, budget]) => ({
+            category,
+            spent: categoryTotals[category] || 0,
+            budget,
+            percentage: Math.min(((categoryTotals[category] || 0) / budget) * 100, 100)
+        }));
+    };
 
     return (
         <div>
@@ -14,7 +43,7 @@ const Dashboard = () => {
                     </CardHeader>
                     <CardContent>
                         {/* <Doughnut data={getChartData()} /> */}
-                        <p>This is a content of card.</p>
+                        <p>This is a content of chart.</p>
                     </CardContent>
                 </Card>
 
