@@ -35,7 +35,6 @@ const Dashboard = () => {
 
     return (
         <div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Card className="col-span-2">
                     <CardHeader>
